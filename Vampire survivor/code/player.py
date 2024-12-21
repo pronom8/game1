@@ -1,10 +1,13 @@
+from settings import *
 
-class Player():
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-        self.image = 1
-        pass
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self,pos, groups):
+        super().__init__(groups)
+        self.image = pygame.image.load(join("Vampire survivor", "images", "player", "down", "0.png")).convert_alpha()
+        self.rect = self.image.get_rect(center = pos)
+
+    
 
     def move_right(self):
         self.x += 1

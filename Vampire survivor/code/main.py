@@ -1,5 +1,5 @@
 from settings import *
-
+from player import Player
 
 
 class Game():
@@ -9,6 +9,13 @@ class Game():
         pygame.display.set_caption("Surviva!")
         self.clock = pygame.time.Clock()
         self.running = True
+
+        #groups
+        self.all_sprites = pygame.sprite.Group()
+
+
+        #player/sprites
+        self.player = Player((400,300), self.all_sprites)
 
     def run(self):
         while self.running:
@@ -22,6 +29,11 @@ class Game():
                 if event.type == pygame.QUIT:
                     self.running = False
 
+            #update
+            self.all_sprites.update(dt)
+
+            #draw
+            self.all_sprites.draw(self.display_surface)
             pygame.display.update()
         pygame.quit()
 
